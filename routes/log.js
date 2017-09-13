@@ -3,8 +3,9 @@ var sequelize = require('../db');
 var Log = sequelize.import('../models/log');
 var User = sequelize.import('../models/user');
 var Definition = sequelize.import('../models/definition');
-
+console.log('see this')
 router.post('/', function(req, res) {
+	console.log('create')
     // req has some body properties that have a username and pwd
     var description = req.body.log.description; 
     var result = req.body.log.result; 
@@ -31,6 +32,7 @@ router.post('/', function(req, res) {
 });
 
 router.get('/', function(req, res) {
+
 	var userid = req.user.id;
 	Log
 	.findAll({
@@ -66,11 +68,12 @@ router.get('/', function(req, res) {
 
 	//This will return data from the log that was updated
 	router.put('/', function(req, res) {
+		console.log('here')
 		var description = req.body.log.desc;
 		var result = req.body.log.result;
 		var data = req.body.log.id;
 		var definition = req.body.log.def;
-		console.log(req);
+		// console.log(req);
 		Log
 			.update(
 			{
@@ -92,6 +95,7 @@ router.get('/', function(req, res) {
 	});
 
 	router.delete('/', function(req, res) {
+		console.log('delete')
 		 var data = req.body.log.id;
 		 Log
 		 		.destroy({
